@@ -1,0 +1,17 @@
+import cors from 'cors';
+import express from 'express';
+
+const app = express();
+
+app.use(
+  cors({
+    origin: process.env.CLIENT_ORIGIN || 'http://localhost:5173',
+  }),
+);
+app.use(express.json());
+
+app.get('/api/health', (_request, response) => {
+  response.json({ status: 'ok', message: 'BoardPrep 2027 API is running' });
+});
+
+export default app;
